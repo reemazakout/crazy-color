@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>crazy color game</title>
+</head>
+<body>
+       <!--top navigation -->
+       <nav>
+        <h1>crazy colors</h1>
+       </nav>
+       <!-- end of top navigation -->
+    <main>
+        <div class="container">
+            <!-- color box  -->
+                <div class="box">
+                    <h2>paint me</h2>
+                </div>
+            <section class="color-option">
+                <button class="random-color-btn">choose random color</button>
+                <h2>or</h2>
+                <h3 class="color" placeholder="put your hexa color her">type hexa color</h3>
+                <input type="text" class="hexa">
+            </section>
+        </div>
+    </main>
+    <!--internal java script code-->
+    <script>
+        
+        const colorBtn = document.querySelector('.random-color-btn')
+        const hexavalue = document.querySelector('.hexa')
+        const box = document.querySelector('.box')
+
+        const hexColors = ['#000000','#FF0000','#00FF00','#0000FF','#FFFFFF','#FFBFD5','#FFFF00','#800000','#00FF00','#808000']
+
+        colorBtn.addEventListener('click',()=>{
+            let randomNumber = Math.floor(Math.random()*hexColors.length);
+            box.style.backgroundColor = hexColors[randomNumber]
+            hexavalue.value = hexColors[randomNumber];
+        })
+
+        hexavalue.addEventListener('pointerleave',(e)=>{
+            console.log(e.target.value);
+            box.style.backgroundColor = e.target.value
+        })
+
+        let myTimer;
+
+        box.addEventListener('mouseenter',()=>{
+            myTimer = setInterval(changeColor,(500))
+            
+        })
+
+        box.addEventListener('mouseleave',()=>{
+            clearInterval(myTimer)
+        })
+
+        const changeColor = ()=>{
+            let randomNumber = Math.floor(Math.random()*hexColors.length);
+            box.style.backgroundColor = hexColors[randomNumber]
+            hexavalue.value = hexColors[randomNumber];
+        }
+            </script>     <!--end java script code-->
+
+        </body>
+        </html>
